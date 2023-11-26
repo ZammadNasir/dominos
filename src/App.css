@@ -131,6 +131,7 @@ ul {
   /* padding: 1px 0px; */
   padding: .5rem;
   transition: top 0.8s;
+  position: -webkit-sticky;
   position: sticky;
   top: 0px;
   background-color: white;

@@ -10,6 +10,7 @@ import { TopBar } from "./components/TopBar";
 import { Offers } from "./components/Offers";
 import Pizza from "./components/Pizza";
 import SingleProduct from "./components/SingleProduct";
+import Bread from "./components/Bread";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/offers" element={<Offers />} />
         <Route path="/pizza" element={<Pizza />} />
+        <Route path="/bread" element={<Bread />} />
         <Route path="/singleproduct/:productId" element={<SingleProduct />} />
       </Routes>
       <Footer />

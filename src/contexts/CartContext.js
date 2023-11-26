@@ -8,6 +8,10 @@ const CartContextProvider = ({ children }) => {
   const [viewedProduct, setviewedProduct] = useState([]);
   const [message, setMessage] = useState("");
 
+  function getItemsQuantity(id) {
+    let cart = cartItems
+    return cart.find(item => item.id == id)?.quantity || 0
+  }
 
   //addding items to cart
   async function addToCart(id, title, img, price) {
@@ -40,10 +44,27 @@ const CartContextProvider = ({ children }) => {
     cart.map(item => {
       if (item.id === id) {
         let findItemIndex = cart.findIndex(item => item.id === id)
-        if (item.quantity === 1) return
+        if (item.quantity === 0) return
         cart[findItemIndex].quantity = item.quantity - 1
         setCartItems(cart)
         localStorage.setItem("cart", JSON.stringify(cartItems));
+      }
+    })
+  }
+  function decreaseBreadQuantity(id, index) {
+    let cart = cartItems;
+    cart.map(item => {
+      if (item.id === id) {
+        let findItemIndex = cart.findIndex(item => item.id === id)
+        if (item.quantity == 0) return console.log('asdfsdfsdkl');
+        //   cart.splice(index, 1)
+        //   setCartItems(cart)
+        //   localStorage.setItem("cart", JSON.stringify(cartItems));
+        // } else {
+        cart[findItemIndex].quantity = item.quantity - 1
+        setCartItems(cart)
+        localStorage.setItem("cart", JSON.stringify(cartItems));
+        // }
       }
     })
   }
@@ -55,13 +76,6 @@ const CartContextProvider = ({ children }) => {
     setCartItems(cart);
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }
-
-
-  // useEffect(() => {
-  //   setCartItems(JSON.parse(localStorage.getItem("cart")) || []);
-  // }, []);
-
-
 
   return (
     <ShoppingCartContext.Provider
@@ -75,7 +89,9 @@ const CartContextProvider = ({ children }) => {
         message,
         viewedProduct,
         setviewedProduct,
-        decreaseQuantity
+        decreaseQuantity,
+        getItemsQuantity,
+        decreaseBreadQuantity
       }}
     >
       {children}

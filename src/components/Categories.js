@@ -49,8 +49,10 @@ const Categories = () => {
               </Link>
             </li>
             <li className="list-item">
-              <img src="../assets/icons/bread.png" alt="bread" />
-              <span>Bread</span>
+              <Link to={'/bread'}>
+                <img src="../assets/icons/bread.png" alt="bread" />
+                <span>Bread</span>
+              </Link>
             </li>
             <li className="list-item">
               <img src="../assets/icons/chicken-leg.png" alt="chicken" />
