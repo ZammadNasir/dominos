@@ -44,7 +44,7 @@ const CartContextProvider = ({ children }) => {
     cart.map(item => {
       if (item.id === id) {
         let findItemIndex = cart.findIndex(item => item.id === id)
-        if (item.quantity === 0) return
+        if (item.quantity === 1) return
         cart[findItemIndex].quantity = item.quantity - 1
         setCartItems(cart)
         localStorage.setItem("cart", JSON.stringify(cartItems));
@@ -56,15 +56,15 @@ const CartContextProvider = ({ children }) => {
     cart.map(item => {
       if (item.id === id) {
         let findItemIndex = cart.findIndex(item => item.id === id)
-        if (item.quantity == 0) return console.log('asdfsdfsdkl');
-        //   cart.splice(index, 1)
-        //   setCartItems(cart)
-        //   localStorage.setItem("cart", JSON.stringify(cartItems));
-        // } else {
+        if (item.quantity < 2) {
+            cart.splice(item[index], 1)
+            setCartItems(cart)
+            localStorage.setItem("cart", JSON.stringify(cartItems));
+            return
+        }
         cart[findItemIndex].quantity = item.quantity - 1
         setCartItems(cart)
         localStorage.setItem("cart", JSON.stringify(cartItems));
-        // }
       }
     })
   }

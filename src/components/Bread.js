@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import productsData from "../data/data";
 import { UseShoppingCart } from "../contexts/CartContext";
-import QuantityCounter from "../components/QuantityCounter"
 
 const Bread = () => {
     const bread = productsData.filter((item) => item.category === "bread")
     const {
         setCartItems,
         addToCart,
-        isOpen,
         setIsOpen,
         message,
         viewedProduct,
@@ -29,10 +27,7 @@ const Bread = () => {
     };
 
     useEffect(() => {
-        const storedCartItems = JSON.parse(localStorage.getItem("cart")) || [];
-        setCartItems(storedCartItems);
-
-        // setCartItems(JSON.parse(localStorage.getItem("cart")) || []);
+        setCartItems(JSON.parse(localStorage.getItem("cart")) || []);
     }, []);
 
     return (
@@ -70,23 +65,26 @@ const Bread = () => {
                                                 style={{
                                                     display: "flex",
                                                     justifyContent: "space-between",
-                                                    gap: "1rem",
-                                                    alignItems: "baseline"
+                                                    gap: "2rem",
+                                                    alignItems: "center"
                                                 }}>
                                                 <p className="price">$ {item.price}</p>
+                                                <div style={{display: "none"}}>
                                                 {
                                                     quantity = getItemsQuantity(item.id)
                                                 }
+                                                </div>
                                                 {
                                                     quantity < 1 ?
                                                         <button
                                                             style={{
-                                                                background: "#0078ac",
+                                                                background: "#d2112c",
                                                                 border: "none",
                                                                 padding: "8px 14px",
                                                                 cursor: "pointer",
-                                                                borderRadius: "4px"
-                                                            }}
+                                                                borderRadius: "4px",
+                                                                fontWeight: "bold"
+                                                                }}
                                                             onClick={() => addToCart(
                                                                 item.id,
                                                                 item.title,
@@ -99,7 +97,7 @@ const Bread = () => {
                                                             <button className="decrease-quantity"
                                                                 style={{
                                                                     backgroundColor:
-                                                                        quantity == 1 ?
+                                                                        quantity < 1 ?
                                                                             '#c5c5c5' : '#d2112c'
                                                                 }}
                                                                 onClick={() => decreaseBreadQuantity(item.id, index)}
@@ -131,54 +129,7 @@ const Bread = () => {
 
 
 
-                {
-                    <section
-                        className="view-product"
-                        style={{
-                            transform: isOpen ? "scale(1)" : "scale(0)",
-                        }}
-                        onClick={() => {
-                            setIsOpen(false);
-                            setviewedProduct([]);
-                        }}
-                    >
-                        <div
-                            className="view-product-inner"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                            }}
-                        >
-                            {viewedProduct.map((item, index) => {
-                                return (
-                                    <div className="viewed-product" id={item.id} key={index}>
-                                        <div>
-                                            <img src={item.img} width="100%" height="100%" />
-                                        </div>
-                                        <div className="product-details">
-                                            <h2>{item.title}</h2>
-                                            <span>{item.desc}</span>
-                                            <p>{item.price}</p>
-                                            <button
-                                                className="cart-btn"
-                                                onClick={() =>
-                                                    addToCart(
-                                                        item.id,
-                                                        item.title,
-                                                        item.img,
-                                                        item.price
-                                                    )
-                                                }
-                                            >
-                                                Add To Cart
-                                            </button>
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </section>
-                }
-
+            
                 <div
                     className="message"
                     style={{

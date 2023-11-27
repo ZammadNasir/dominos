@@ -748,7 +748,11 @@ footer {
   text-align: center;
   transition: right 0.3s;
 }
-
+.single-product{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
 /* footer styling end */
 @media (max-width: 900px) {
   .footer-inner ul {

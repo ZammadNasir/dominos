@@ -23,8 +23,9 @@ const Categories = () => {
       <div className="container">
         <div className="categories-inner"
           style={{
-            width: isShowingCategories ? "auto" : "100%",
-            display: isShowingCategories ? "grid" : "block"
+            width: isShowingCategories ? "auto" : "80%",
+            display: isShowingCategories ? "grid" : "block",
+            
           }}
         >
           {isShowingCategories ? (
