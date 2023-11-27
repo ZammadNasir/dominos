@@ -7,7 +7,7 @@ const Pizza = () => {
 
     return (
         <>
-            <section className='pizza'>
+            <section className='pizza' style={{marginTop: "20px"}}>
                 <div className="container">
                     <div className="pizza-inner products-inner">
                         {

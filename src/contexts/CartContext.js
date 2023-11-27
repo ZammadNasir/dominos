@@ -57,7 +57,7 @@ const CartContextProvider = ({ children }) => {
       if (item.id === id) {
         let findItemIndex = cart.findIndex(item => item.id === id)
         if (item.quantity < 2) {
-            cart.splice(item[index], 1)
+            cart.splice(findItemIndex, 1)
             setCartItems(cart)
             localStorage.setItem("cart", JSON.stringify(cartItems));
             return

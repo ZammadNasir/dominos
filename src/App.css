@@ -722,7 +722,9 @@ footer {
 .social-icons img {
   width: 20px;
 }
-
+footer{
+margin: 100px 0px 8px 0px;  
+}
 .footer-inner .copy-right {
   display: flex;
   justify-content: center;
@@ -796,6 +798,7 @@ footer {
 
   footer {
     padding-inline: 12px;
+    margin: 22px 0px;
   }
 
   .footer-inner ul {
